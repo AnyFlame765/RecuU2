@@ -1,0 +1,30 @@
+create table docentes(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    curp varchar(18) not null PRIMARY KEY,
+    name varchar(20) not null,
+    apellidos varchar(50) not null,
+    fechaNac date not null DEFAULT now(),
+    nss int not null
+);
+
+
+create table alumnos(
+
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    curp varchar(18) not null PRIMARY KEY,
+    name varchar(20) not null,
+    apellido varchar(50) not null,
+    fechaNac date not null DEFAULT now(),
+    matricula varchar(10) not null unique,
+);
+
+
+create table calificaciones(
+    id bigint AUTO_INCREMENT PRIMARY KEY ,
+    materia varchar(20) not null,
+    calificacion double not null,
+    curp_estudiante varchar(18) not null,
+    FOREIGN KEY (curp_estudiante) REFERENCES estudiantes(curp)
+	FOREIGN KEY(id_alumno) REFERENCES alumnos(id),
+    FOREIGN KEY(id_docente) REFERENCES docentes(id)
+);
